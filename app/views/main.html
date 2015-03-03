@@ -1,11 +1,29 @@
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    Dropdown
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li ng-repeat="thing in awesomeThings">
-      <a>{{thing}}</a>
-    </li>
-  </ul>
+<div id="search" ng-controller="SearchCtrl">
+
+  <form>
+    <div class="form-group">
+      <input ng-model="query" class="form-control" placeholder="Find a Movie" ng-keyup="$event.keyCode == 13 && executeSearch()">
+    </div>
+    <div class="form-group">
+      <a href="" class="btn btn-success" ng-click="executeSearch()">
+        Search
+        <span style="display:none;" ng-class="{'show':searching}" class="glyphicon glyphicon-refresh glyphicon-spin"></span>
+      </a>
+    </div>
+  </form>
+
+  <div class="movie" ng-repeat="movie in movies">
+    <div class="row" ng-class-even="'bg-grey'">
+      <div class="col-sm-8">
+        <strong>{{ movie.Title }}</strong>
+      </div>
+      <div class="col-sm-2">
+        ({{movie.Year}})
+      </div>
+      <div class="col-sm-2">
+        <a href="http://www.imdb.com/title/{{movie.imdbID}}" target="_blank">IMDB</a>
+      </div>
+    </div>
+  </div>
+
 </div>
